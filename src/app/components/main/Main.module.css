@@ -12,9 +12,11 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  border: 5px solid rgb(19, 106, 5);
   padding: 1rem;
   gap: 1rem;
+  background-color: #ac9409;
+  border-bottom: 3px solid #0920ac;
+  box-shadow: 0 0 0.5rem #0920ac;
 }
 .title {
   display: flex;
@@ -57,4 +59,63 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+.contextContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  max-height: 68vh;
+  transition: all 0.3s ease-in-out;
+  overflow-y: scroll;
+  /* scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #ac9409 transparent;
+}
+.contextContainer::-webkit-scrollbar {
+  width: 5px;
+}
+.contextContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+.contextContainer::-webkit-scrollbar-thumb {
+  background-color: #ac9409;
+  border-radius: 20px;
+  border: transparent;
+}
+.titleArea {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.setting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.settingTitle {
+  font: inherit;
+  font-size: 1.2rem;
+  font-weight: bold;
 }

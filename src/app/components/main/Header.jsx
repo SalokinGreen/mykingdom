@@ -3,9 +3,19 @@ import styles from "./Main.module.css";
 import { FaHeart } from "react-icons/fa";
 import { AiFillGold } from "react-icons/ai";
 import { IoMdFlame } from "react-icons/io";
+import { FaCrown } from "react-icons/fa";
+import { IoMdSettings } from "react-icons/io";
+
 import Button from "../UI/Button";
 
-export default function Header({ openSettings, love, power, wealth }) {
+export default function Header({
+  openSettings,
+  setOpenSettings,
+  love,
+  power,
+  wealth,
+  kingdomName,
+}) {
   const [beforeLove, setBeforeLove] = useState(love);
   const [beforePower, setBeforePower] = useState(power);
   const [beforeWealth, setBeforeWealth] = useState(wealth);
@@ -34,11 +44,19 @@ export default function Header({ openSettings, love, power, wealth }) {
     }, 1000);
   }, [loveColor, powerColor, wealthColor]);
   return (
-    <div className={styles.header} onClick={() => openSettings(false)}>
-      <div className={styles.title}>
-        <h1>My Kingdom</h1>
+    <div className={styles.header}>
+      <div className={styles.titleArea}>
+        <FaCrown size={36} color="white" className={styles.icon} />
+        <div className={styles.title}>
+          <h1>{kingdomName}</h1>
+        </div>
+        <IoMdSettings
+          size={36}
+          color="white"
+          className={styles.icon}
+          onClick={() => setOpenSettings(true)}
+        />
       </div>
-
       <div className={styles.stats}>
         <div className={styles.stat}>
           <FaHeart size={36} color={`${loveColor}`} className={styles.icon} />

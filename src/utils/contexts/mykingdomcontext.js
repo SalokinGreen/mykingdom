@@ -1,21 +1,10 @@
 const mykingdom = {
   start: `[ Title: My Kingdom; Tags: game; ]
-----
-Love
-Status: neutral, 50 out of 100
-Description: How much your kingdom loves you! Highly correlated with approval, love is a base for loyalty and duty. You earn love by being fair, kind, and charming.
-----
-Power
-Status: neutral, 50 out of 100
-Description: Power is the strength of your kingdom. Power gets stronger by getting resources, like army units, but it gets smaller with your loses.
-----
-Wealth
-Status: neutral, 50 out of 100
-Description: The assets in your coffers, how much gold is available for you to spend. The higher the wealth, the better paid are your army and workers, and the more noble they view you to be.`,
+`,
   context: [
     `***
 Year 0
-Your father died, SGreen the first, leaving his kingdom to you. What will you do?
+Your father died, leaving his kingdom to you. What will you do?
 > Buy a dragon.
 Your advisors try to discourage you from buying a dragon. It seems that dragons are prone to roam and the region's history has proved that dragons cannot be controlled. But you don't listen to them. You are the King now, and you make the decisions.
 The advisor arranges to purchase a young, hungry, and inexperienced dragon from a neighboring kingdom. He has dark scales and sharp talons.
@@ -25,7 +14,6 @@ You name the dragon "Blackscale" and put him in the royal stables.
 Year 1
 You are already in a tough spot, having spent most of your gold on the dragon.
 You must prepare for the invasion.
-What shall you do to defend your kingdom?
 > Increase taxes for more gold.
 It is never pleasant to levy unnecessary taxes, but this is a matter of life and death. You increase the taxes, promising that this is a one-time situation. The people will find a way to cope.
 In the end, the taxing decision has caused you to lose more love than you have gained in approval. However, the new funds have helped the power of your kingdom.
@@ -34,7 +22,6 @@ In the end, the taxing decision has caused you to lose more love than you have g
 Year 2
 Alas, rumors have spread across the lands of the increased taxes. Some people from the small cities and villages surrounding the capital have left, seeking a better life in a more caring kingdom.
 They have taken their personal belongings and have built homes further up the mountains, effectively becoming a hill tribe. They are considered as uncivilized people now by the neighboring kingdoms, and you have lost control of them.
-What will you do with the rest of the money?
 > Apologies to the people of my kingdom.
 The apology is delivered to the small cities and villages, acknowledging the wrong decision.
 You promised lower taxes for a period of a decade. People are pleased and approve you a little bit more.
@@ -45,7 +32,6 @@ A moderately sized baron has rebelled and taken over the mountain. He holds the 
 The dragon has gone missing, never to be heard of again.
 There is a swarm of locusts nearby that devours the crops of your small cities and villages.
 Your primary city is all that remains, and there are whispers of unrest.
-What will you do?
 > Find my dragon.
 After days of searching and waiting, the dragon has finally returned.
 The dragon seems to have grown quite a lot. There's something different about him...
@@ -57,7 +43,6 @@ Year 4
 Years seem to be going by so quickly.
 The dragon's belly grows bigger.
 The kingdom is still reeling from the possible impact of the swarms of locusts.
-What do you decide to do?
 > Lead my army against the locusts.
 It is not the right time to lead an assault; you decide it's safer to send your army.
 The journey to the swarms doesn't go well. Your troops suffer heavy losses, but in the end, the locusts are eradicated.

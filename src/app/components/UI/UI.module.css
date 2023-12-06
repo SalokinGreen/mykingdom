@@ -1,25 +1,27 @@
 .button {
   padding: 0.5rem;
   border-radius: 0.5rem;
-  border: 1px solid rgba(38, 209, 11, 0.2);
+  border: 1px solid #0920ac;
+  box-shadow: 0 0 0.5rem #0920ac;
+
   outline: none;
   font-size: 1.2rem;
-  font-weight: 400;
-  color: rgb(22, 203, 2);
+  font-weight: 600;
+  /* color: #0920ac; */
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  background-color: rgba(38, 209, 11, 0.2);
+  background-color: #ac9409;
 }
 
 .exit {
   border-radius: 0.5rem;
-  border: 1px solid rgba(38, 209, 11, 0.2);
+  border: 1px solid #ac9409;
   outline: none;
   font-size: 1.2rem;
   font-weight: 400;
-  color: rgb(22, 203, 2);
+  color: #0920ac;
   cursor: pointer;
-  /* background-color: rgba(38, 209, 11, 0.2); */
+  /* background-color: #ac9409; */
   width: fit-content;
   padding: 0.2rem;
   position: relative;
@@ -34,14 +36,14 @@
   transform: translate(-50%, -50%);
   margin: 0 auto;
   padding: 1rem;
-  background-color: #000000;
-  border: 1px solid rgba(38, 209, 11, 0.2);
+  background-color: #ac9409;
+  border: 1px solid #ac9409;
   border-radius: 0.5rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0.5rem #ac9409;
   overflow-y: scroll;
   /* scrollbar */
   scrollbar-width: thin;
-  scrollbar-color: rgba(38, 209, 11, 0.2) transparent;
+  scrollbar-color: #ac9409 transparent;
 }
 .modal::-webkit-scrollbar {
   width: 5px;
@@ -50,7 +52,7 @@
   background: transparent;
 }
 .modal::-webkit-scrollbar-thumb {
-  background-color: rgba(38, 209, 11, 0.2);
+  background-color: #ac9409;
   border-radius: 20px;
   border: transparent;
 }
@@ -72,19 +74,22 @@
 .input {
   padding: 0.5em;
   border-radius: 10px;
-  border: 1px solid rgba(38, 209, 11, 0.2);
+  border: 1px solid #ac9409;
   outline: none;
   resize: none;
   font-size: 1.2em;
   font-weight: 400;
-  color: rgb(22, 203, 2);
-  background-color: rgba(38, 209, 11, 0.2);
+  /* color: #0920ac; */
+  background-color: #ac9409;
+  border: 1px solid #0920ac;
+  box-shadow: 0 0 0.5rem #0920ac;
+
   width: 100%;
   max-height: 10vh;
   overflow-y: scroll;
   /* scrollbar */
   scrollbar-width: thin;
-  scrollbar-color: rgba(38, 209, 11, 0.2) transparent;
+  scrollbar-color: #ac9409 transparent;
 }
 .input::-webkit-scrollbar {
   width: 5px;
@@ -93,7 +98,7 @@
   background: transparent;
 }
 .input::-webkit-scrollbar-thumb {
-  background-color: rgba(38, 209, 11, 0.2);
+  background-color: #ac9409;
   border-radius: 20px;
   border: transparent;
 }
@@ -104,7 +109,7 @@
   left: 0;
   width: 20%;
   height: 100%;
-  /* background-color: rgba(0, 0, 0, 0.5); */
+  /* background-color: #ac9409; */
   z-index: 100;
 }
 .left {
@@ -113,7 +118,7 @@
   justify-content: flex-start;
   align-items: center;
 
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #ac9409;
   z-index: 100;
 }
 .right {
@@ -122,7 +127,7 @@
   justify-content: flex-start;
   align-items: center;
 
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #ac9409;
   z-index: 100;
 }
 /* context menu */
@@ -132,7 +137,7 @@
   left: 0;
   width: 10rem;
   height: 10rem;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #ac9409;
   z-index: 100;
 }
 .menuContent {
@@ -143,7 +148,7 @@
   gap: 0.5rem;
   width: 100%;
   height: 100%;
-  /* border: 1px solid rgba(38, 209, 11, 0.2); */
+  /* border: 1px solid #ac9409; */
 }
 .menuOverlay {
   position: absolute;
@@ -163,7 +168,7 @@
   padding: 0.5rem;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  border: 1px solid rgba(38, 209, 11, 0.2);
+  border: 1px solid #ac9409;
 }
 .dialog {
   position: absolute;
@@ -172,14 +177,14 @@
   transform: translate(-50%, -50%);
   margin: 0 auto;
   padding: 1rem;
-  background-color: #000000;
-  border: 1px solid rgba(38, 209, 11, 0.2);
+  background-color: #ac9409;
+  border: 1px solid #ac9409;
   border-radius: 0.5rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0.5rem #ac9409;
   overflow-y: scroll;
   /* scrollbar */
   scrollbar-width: thin;
-  scrollbar-color: rgba(38, 209, 11, 0.2) transparent;
+  scrollbar-color: #ac9409 transparent;
 }
 .dialog::-webkit-scrollbar {
   width: 5px;
@@ -188,7 +193,7 @@
   background: transparent;
 }
 .dialog::-webkit-scrollbar-thumb {
-  background-color: rgba(38, 209, 11, 0.2);
+  background-color: #ac9409;
   border-radius: 20px;
   border: transparent;
 }
@@ -204,12 +209,12 @@
 .dialogInputTitle {
   font-size: 1.2rem;
   font-weight: 400;
-  color: rgb(22, 203, 2);
+  color: #0920ac;
 }
 .DialogInputDescription {
   font-size: 1rem;
   font-weight: 400;
-  color: rgb(22, 203, 2);
+  color: #0920ac;
 }
 .dialogInputAction {
   display: flex;
@@ -218,6 +223,19 @@
   align-items: center;
   gap: 0.5rem;
   width: 100%;
+}
+/* chat bubble */
+.bubble {
+  background-color: #ac9409;
+  border: 1px solid #0920ac;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.5rem #0920ac;
+  padding: 1rem;
+  margin: 0.5rem;
+  font: 1rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  min-width: -webkit-fill-available;
 }
 
 /* mobile */
