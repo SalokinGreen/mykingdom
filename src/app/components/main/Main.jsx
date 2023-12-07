@@ -9,8 +9,12 @@ import generate from "@/utils/front/generate";
 import Button from "../UI/Button";
 import Bubble from "../UI/Bubble";
 import Modal from "../UI/Modal";
+import PopUP from "../UI/PopUp";
 export default function Main() {
   const [openSettings, setOpenSettings] = useState(false);
+  const [popUp, setPopUp] = useState(false);
+  const [popUpText, setPopUpText] = useState("");
+  const [popUpTitle, setPopUpTitle] = useState("");
   const [key, setKey] = useState("");
   const [love, setLove] = useState(50);
   const [power, setPower] = useState(50);
@@ -147,12 +151,16 @@ Name: ${ruler.name}`);
   }
   useEffect(() => {
     if (love < 0 || power < 0 || wealth < 0) {
-      alert("Game Over");
+      setPopUp(true);
+      setPopUpTitle("Game Over");
+      setPopUpText("You lost the game!");
       setLove(50);
       setPower(50);
       setWealth(50);
     } else if (love > 100 && power > 100 && wealth > 100) {
-      alert("You Win!");
+      setPopUp(true);
+      setPopUpTitle("Congratulations!");
+      setPopUpText("You won the game!");
       setLove(50);
       setPower(50);
       setWealth(50);
@@ -189,6 +197,7 @@ Name: ${ruler.name}`);
     scrollRef.current.scrollIntoView({ behavior: "smooth" });
   }, [context]);
   const getValue = (text) => {
+    console.log(text);
     if (
       text.includes("increased greatly") ||
       text.includes("increase greatly") ||
@@ -199,7 +208,16 @@ Name: ${ruler.name}`);
     } else if (
       text.includes("increased") ||
       text.includes("+") ||
-      text.includes("increase")
+      text.includes("increase") ||
+      text.includes("increasing") ||
+      text.includes("raised") ||
+      text.includes("raising") ||
+      text.includes("raise") ||
+      text.includes("higher") ||
+      text.includes("up") ||
+      text.includes("upped") ||
+      text.includes("upping") ||
+      text.includes("more")
     ) {
       return 10;
     } else if (
@@ -212,7 +230,21 @@ Name: ${ruler.name}`);
     } else if (
       text.includes("decreased") ||
       text.includes("-") ||
-      text.includes("decrease")
+      text.includes("decrease") ||
+      text.includes("decreasing") ||
+      text.includes("reduced") ||
+      text.includes("reducing") ||
+      text.includes("reduction") ||
+      text.includes("back") ||
+      text.includes("lower") ||
+      text.includes("lowered") ||
+      text.includes("lowering") ||
+      text.includes("less") ||
+      text.includes("lessen") ||
+      text.includes("lessened") ||
+      text.includes("lessening") ||
+      text.includes("down") ||
+      text.includes("downed")
     ) {
       return -10;
     } else {
@@ -274,6 +306,15 @@ Name: ${ruler.name}`);
             </div>
           </div>
         </Modal>
+      )}
+      {popUp && (
+        <PopUP
+          title={popUpTitle}
+          text={popUpText}
+          i={0}
+          open={popUp}
+          setOpen={setPopUp}
+        ></PopUP>
       )}
     </div>
   );

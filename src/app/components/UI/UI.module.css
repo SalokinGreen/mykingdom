@@ -238,7 +238,39 @@
   font-weight: 400;
   min-width: -webkit-fill-available;
 }
-
+.popUp {
+  position: absolute;
+  width: 75vw;
+  height: 50vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: #004c4c;
+  border: 1px solid #fbd80f;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem #fbd80f;
+  overflow-y: scroll;
+}
+.popUpTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fbd80f;
+  /* center */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popUpText {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #fbd80f;
+  /* center */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* mobile */
 @media (max-width: 768px) {
   .modalMedium {
