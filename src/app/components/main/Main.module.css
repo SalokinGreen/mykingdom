@@ -79,6 +79,11 @@
   left: 0;
   right: 0;
 }
+@media (max-width: 768px) {
+  .inputArea {
+    position: fixed;
+  }
+}
 .contextContainer {
   display: flex;
   flex-direction: column;
