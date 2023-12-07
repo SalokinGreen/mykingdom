@@ -15,11 +15,15 @@ export default function Main() {
   const [love, setLove] = useState(50);
   const [power, setPower] = useState(50);
   const [wealth, setWealth] = useState(50);
-  const [context, setContext] = useState([]);
+  const [context, setContext] = useState([
+    `***
+Year 0
+Your father died, leaving his kingdom to you. What will you do?`,
+  ]);
   const [input, setInput] = useState("");
   const [generating, setGenerating] = useState(false);
   const [year, setYear] = useState(0);
-  const [choice, setChoice] = useState(false);
+  const [choice, setChoice] = useState(true);
   const [openKingdom, setOpenKingdom] = useState(false);
   const [openRuler, setOpenRuler] = useState(false);
   const [mykingdomcontext, setMykingdomcontext] = useState("");
@@ -141,6 +145,24 @@ Name: ${ruler.name}`);
       });
     });
   }
+  useEffect(() => {
+    if (love < 0 || power < 0 || wealth < 0) {
+      alert("Game Over");
+      setLove(50);
+      setPower(50);
+      setWealth(50);
+    } else if (love > 100 && power > 100 && wealth > 100) {
+      alert("You Win!");
+      setLove(50);
+      setPower(50);
+      setWealth(50);
+    }
+  }, [love, power, wealth]);
+  useEffect(() => {
+    if (!choice) {
+      send();
+    }
+  }, [choice, generating]);
   function send() {
     if (generating) return;
     if (choice) {
