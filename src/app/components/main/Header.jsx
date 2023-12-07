@@ -19,9 +19,9 @@ export default function Header({
   const [beforeLove, setBeforeLove] = useState(love);
   const [beforePower, setBeforePower] = useState(power);
   const [beforeWealth, setBeforeWealth] = useState(wealth);
-  const [loveColor, setLoveColor] = useState("white");
-  const [powerColor, setPowerColor] = useState("white");
-  const [wealthColor, setWealthColor] = useState("white");
+  const [loveColor, setLoveColor] = useState("icon");
+  const [powerColor, setPowerColor] = useState("icon");
+  const [wealthColor, setWealthColor] = useState("icon");
   useEffect(() => {
     if (beforeLove !== love) {
       setBeforeLove(love);
@@ -38,9 +38,9 @@ export default function Header({
   }, [love, power, wealth]);
   useEffect(() => {
     setTimeout(() => {
-      setLoveColor("white");
-      setPowerColor("white");
-      setWealthColor("white");
+      setLoveColor("icon");
+      setPowerColor("icon");
+      setWealthColor("icon");
     }, 1000);
   }, [loveColor, powerColor, wealthColor]);
   return (
@@ -59,23 +59,15 @@ export default function Header({
       </div>
       <div className={styles.stats}>
         <div className={styles.stat}>
-          <FaHeart size={36} color={`${loveColor}`} className={styles.icon} />
+          <FaHeart size={36} className={styles[`${powerColor}`]} />
           <p>{love}</p>
         </div>
         <div className={styles.stat}>
-          <IoMdFlame
-            size={36}
-            color={`${powerColor}`}
-            className={styles.icon}
-          />
+          <IoMdFlame size={36} className={styles[`${powerColor}`]} />
           <p>{power}</p>
         </div>
         <div className={styles.stat}>
-          <AiFillGold
-            size={36}
-            color={`${wealthColor}`}
-            className={styles.icon}
-          />
+          <AiFillGold size={36} className={styles[`${powerColor}`]} />
           <p>{wealth}</p>
         </div>
       </div>

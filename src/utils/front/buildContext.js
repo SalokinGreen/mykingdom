@@ -2,7 +2,7 @@ import { Encoder } from "nai-js-tokenizer";
 
 // import tokenizerData from "../tokenizers/7nerdstash_tokenizer_v2.json";
 
-export default function buildContext(memory, top, bottom, size) {
+export default function buildContext(memory, top, bottom, size, addon) {
   //   let encoder = new Encoder(vocab, merges, specialTokens, config);
   return fetch("./tokenizers/nerdstash_tokenizer_v2.json")
     .then((response) => response.json())
@@ -23,10 +23,13 @@ export default function buildContext(memory, top, bottom, size) {
         returnString += e + "\n";
       });
       let bottomString = "";
+      tokenSize += encoder.encode("addon").length;
+      returnString += addon + "\n";
       bottom.forEach((e) => {
         if (tokenSize + encoder.encode(e).length > size) return;
         tokenSize += encoder.encode(e).length;
-        bottomString = "\n" + e + bottomString;
+        // bottomString = "\n" + e + bottomString;
+        bottomString += e + "\n";
       });
       returnString += bottomString;
       returnString = cleanString(returnString);

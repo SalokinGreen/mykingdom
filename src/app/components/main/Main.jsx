@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./Main.module.css";
 import Header from "./Header";
 import Input from "../UI/Input";
@@ -20,7 +20,10 @@ export default function Main() {
   const [generating, setGenerating] = useState(false);
   const [year, setYear] = useState(0);
   const [choice, setChoice] = useState(false);
+  const [openKingdom, setOpenKingdom] = useState(false);
+  const [openRuler, setOpenRuler] = useState(false);
   const [mykingdomcontext, setMykingdomcontext] = useState("");
+  const scrollRef = useRef(null);
   const [kingdom, setKingdom] = useState({
     name: "Greenland",
     race: "Human",
@@ -35,26 +38,27 @@ export default function Main() {
 [ Title: My Kingdom; Tags: game; ]
 ----
 Love
-Status: neutral, ${love} out of 100
+Status: ${getValuetext(love)}, ${love} out of 100
 Description: How much your kingdom loves you! Highly correlated with approval, love is a base for loyalty and duty. You earn love by being fair, kind, and charming.
 ----
 Power
-Status: neutral, ${power} out of 100
+Status: ${getValuetext(power)}, ${power} out of 100
 Description: Power is the strength of your kingdom. Power gets stronger by getting resources, like army units, but it gets smaller with your loses.
 ----
 Wealth
-Status: neutral, ${wealth} out of 100
+Status: ${getValuetext(wealth)}, ${wealth} out of 100
 Description: The assets in your coffers, how much gold is available for you to spend. The higher the wealth, the better paid are your army and workers, and the more noble they view you to be.
 ----
 Kingdom
 Name: ${kingdom.name}
 Population: ${kingdom.race}
 System: ${kingdom.system}
-[ Love: ${love}; Power: ${power}; Wealth: ${wealth} ]
+[ Love: ${getValuetext(love)}; Power: ${getValuetext(
+      power
+    )}; Wealth: ${getValuetext(wealth)} ]
 ----
 You (Ruler)
-Name: ${ruler.name}
-***`);
+Name: ${ruler.name}`);
   }, [love, power, wealth]);
   function handleEnter(e) {
     if (e.key === "Enter") {
@@ -67,17 +71,18 @@ Name: ${ruler.name}
     buildContext(
       mykingdom.start,
       mykingdom.context,
-      [...context, mykingdomcontext],
-      8000
+      [...context],
+      8000,
+      mykingdomcontext
     ).then((res) => {
-      generate(res + `\nYear ${year}\n`, {}, key).then((res2) => {
+      generate(res + `***\nYear ${year}\n`, {}, key).then((res2) => {
         console.log(res2);
         let text = res2[0].replace("\n>", "");
         if (text.includes("\n***")) {
           text = text.split("\n***")[0];
         }
         // remove "\n> " from the end
-        setContext([...context, `Year ${year}\n${text}`]);
+        setContext([...context, `***\nYear ${year}\n${text}`]);
         setGenerating(false);
       });
     });
@@ -88,32 +93,47 @@ Name: ${ruler.name}
     buildContext(
       mykingdom.after,
       mykingdom.context,
-      [...context, mykingdomcontext],
-      8000
+      [...context],
+      8000,
+      mykingdomcontext
     ).then((res) => {
       setInput("");
-      generate(res + `\n> ${input}\n`, {}, key).then((res2) => {
+      generate(res + `> ${input}\n`, {}, key).then((res2) => {
         console.log(res2);
         let text = res2[0].replace("\n***", "");
         if (text.includes("\n>")) {
           text = text.split("\n>")[0];
         }
+        let found = false;
         // points logic. There might be "Love: XXX;" or "Love: ]" check for both
-        const loveText = text.split("Love: ")[1];
-        const powerText = text.split("Power: ")[1];
-        const wealthText = text.split("Wealth: ")[1];
+        let loveText = text.split("Love: ")[1];
+        let powerText = text.split("Power: ")[1];
+        let wealthText = text.split("Wealth: ")[1];
         if (loveText) {
+          loveText.includes(";")
+            ? (loveText = loveText.split(";")[0])
+            : loveText.split(" ]")[0];
           const loveValue = getValue(loveText);
+          loveValue !== 0 && (found = true);
           setLove(love + loveValue);
         }
         if (powerText) {
+          powerText.includes(";")
+            ? (powerText = powerText.split(";")[0])
+            : powerText.split(" ]")[0];
           const powerValue = getValue(powerText);
+          powerValue !== 0 && (found = true);
           setPower(power + powerValue);
         }
         if (wealthText) {
+          wealthText.includes(";")
+            ? (wealthText = wealthText.split(";")[0])
+            : wealthText.split(" ]")[0];
           const wealthValue = getValue(wealthText);
+          wealthValue !== 0 && (found = true);
           setWealth(wealth + wealthValue);
         }
+        console.log(loveText, powerText, wealthText, found);
 
         setContext([...context, `> ${input}`, text]);
         setGenerating(false);
@@ -143,6 +163,9 @@ Name: ${ruler.name}
       setKey(localStorage.getItem("MKapiKey"));
     }
   }, []);
+  useEffect(() => {
+    scrollRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [context]);
   const getValue = (text) => {
     if (
       text.includes("increased greatly") ||
@@ -174,6 +197,20 @@ Name: ${ruler.name}
       return 0;
     }
   };
+  const getValuetext = (value) => {
+    if (value < 20) {
+      return "very low";
+    } else if (value < 40) {
+      return "low";
+    } else if (value < 60) {
+      return "neutral";
+    } else if (value < 80) {
+      return "high";
+    } else {
+      return "very high";
+    }
+  };
+
   return (
     <div className={styles.main}>
       <Header
@@ -188,6 +225,7 @@ Name: ${ruler.name}
         {context.map((c, i) => (
           <Bubble i={i}>{c}</Bubble>
         ))}
+        <div ref={scrollRef}></div>
       </div>
       <div className={styles.inputArea}>
         <Input

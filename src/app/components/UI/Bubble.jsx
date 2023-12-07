@@ -4,7 +4,10 @@ import styles from "./UI.module.css";
 export default function Bubble({ children, i }) {
   const [text, setText] = useState(children);
   useEffect(() => {
-    setText(text.split("[")[0]);
+    let newText = text;
+    newText = newText.replace("***\n", "");
+    newText = newText.replace("***", "");
+    setText(newText.split("[")[0]);
   }, [text]);
 
   return (
