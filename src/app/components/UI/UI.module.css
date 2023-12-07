@@ -57,12 +57,12 @@
   border: transparent;
 }
 .modalMedium {
-  width: 50vw;
-  height: 50vh;
+  width: 50dvw;
+  height: 50dvh;
 }
 .modalBig {
-  width: 70vw;
-  height: 70vh;
+  width: 70dvw;
+  height: 70dvh;
 }
 
 .modalContent {
@@ -85,7 +85,7 @@
   box-shadow: 0 0 0.5rem #fbd80f;
   color: #fbd80f;
   width: 100%;
-  max-height: 10vh;
+  max-height: 10dvh;
   overflow-y: scroll;
   /* scrollbar */
   scrollbar-width: thin;
@@ -198,8 +198,8 @@
   border: transparent;
 }
 .dialogInput {
-  width: 20vw;
-  height: 10vh;
+  width: 20dvw;
+  height: 10dvh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -240,8 +240,8 @@
 }
 .popUp {
   position: absolute;
-  width: 75vw;
-  height: 50vw;
+  width: 75dvw;
+  height: 50dvw;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -274,12 +274,12 @@
 /* mobile */
 @media (max-width: 768px) {
   .modalMedium {
-    width: 90vw;
-    height: 90vh;
+    width: 90dvw;
+    height: 90dvh;
   }
   .modalBig {
-    width: 100vw;
-    height: 100vh;
+    width: 100dvw;
+    height: 100dvh;
   }
   .drawer {
     width: 75%;
