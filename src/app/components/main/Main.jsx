@@ -150,14 +150,14 @@ Name: ${ruler.name}`);
     });
   }
   useEffect(() => {
-    if (love < 0 || power < 0 || wealth < 0) {
+    if (love <= 0 || power <= 0 || wealth <= 0) {
       setPopUp(true);
       setPopUpTitle("Game Over");
       setPopUpText("You lost the game!");
       setLove(50);
       setPower(50);
       setWealth(50);
-    } else if (love > 100 && power > 100 && wealth > 100) {
+    } else if (love >= 100 && power >= 100 && wealth >= 100) {
       setPopUp(true);
       setPopUpTitle("Congratulations!");
       setPopUpText("You won the game!");
