@@ -277,7 +277,9 @@ Name: ${ruler.name}`);
       />
       <div className={styles.contextContainer}>
         {context.map((c, i) => (
-          <Bubble i={i}>{c}</Bubble>
+          <Bubble i={i} key={i}>
+            {c}
+          </Bubble>
         ))}
         <div ref={scrollRef}></div>
       </div>

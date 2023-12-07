@@ -51,12 +51,14 @@
 }
 .red {
   transition: all 0.3s ease-in-out;
+  animation: shake 0.5s linear infinite;
 }
 .red path {
   color: #fb0f0f;
 }
 .green {
   transition: all 0.3s ease-in-out;
+  animation: shake 0.5s linear infinite;
 }
 .green path {
   color: #0ffb0f;
