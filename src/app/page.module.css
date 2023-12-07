@@ -4,6 +4,7 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
+  max-height: 100vh;
   /* get "background.png */
   background-image: url("/background.png");
   /* background overlay #004c4c */

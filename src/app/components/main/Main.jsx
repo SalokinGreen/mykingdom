@@ -289,7 +289,7 @@ Name: ${ruler.name}`);
           onChange={(e) => setInput(e.target.value)}
           handleEnter={handleEnter}
         />
-        <Button onClick={() => start()}>Enter</Button>
+        <Button onClick={() => send()}>Enter</Button>
       </div>
       {openSettings && (
         <Modal
