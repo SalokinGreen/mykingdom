@@ -11,6 +11,7 @@ import Bubble from "../UI/Bubble";
 import Modal from "../UI/Modal";
 import PopUP from "../UI/PopUp";
 export default function Main() {
+  const [loading, setLoading] = useState(true);
   const [openSettings, setOpenSettings] = useState(false);
   const [popUp, setPopUp] = useState(false);
   const [popUpText, setPopUpText] = useState("");
@@ -39,6 +40,8 @@ Your father died, leaving his kingdom to you. What will you do?`,
   });
   const [ruler, setRuler] = useState({
     name: "SGreen the Second",
+    title: "King",
+    race: "Human",
   });
   useEffect(() => {
     setMykingdomcontext(`> NEW GAME
@@ -281,7 +284,26 @@ Name: ${ruler.name}`);
       return "very high";
     }
   };
-
+  useEffect(() => {
+    if (localStorage.getItem("MKkingdom")) {
+      setKingdom(JSON.parse(localStorage.getItem("MKkingdom")));
+      setLoading(false);
+    }
+    if (localStorage.getItem("MKruler")) {
+      setRuler(JSON.parse(localStorage.getItem("MKruler")));
+      setLoading(false);
+    }
+  }, []);
+  useEffect(() => {
+    if (!loading) {
+      localStorage.setItem("MKkingdom", JSON.stringify(kingdom));
+    }
+  }, [kingdom]);
+  useEffect(() => {
+    if (!loading) {
+      localStorage.setItem("MKruler", JSON.stringify(ruler));
+    }
+  }, [ruler]);
   return (
     <div className={styles.main}>
       <Header
@@ -291,6 +313,8 @@ Name: ${ruler.name}`);
         power={power}
         wealth={wealth}
         kingdomName={kingdom.name}
+        openKingdom={setOpenKingdom}
+        openRuler={setOpenRuler}
       />
       <div className={styles.contextContainer}>
         {context.map((c, i) => (
@@ -313,6 +337,7 @@ Name: ${ruler.name}`);
           isOpen={openSettings}
           onClose={() => setOpenSettings(false)}
           size="small"
+          title="Settings"
         >
           <div className={styles.settings}>
             <div className={styles.setting}>
@@ -334,6 +359,74 @@ Name: ${ruler.name}`);
           open={popUp}
           setOpen={setPopUp}
         ></PopUP>
+      )}
+      {openKingdom && (
+        <Modal
+          isOpen={openKingdom}
+          onClose={() => setOpenKingdom(false)}
+          title="Kingdom"
+        >
+          <div className={styles.settings}>
+            <div className={styles.setting}>
+              <div className={styles.settingTitle}>Name</div>
+              <Input
+                value={kingdom.name}
+                onChange={(e) =>
+                  setKingdom({ ...kingdom, name: e.target.value })
+                }
+              />
+            </div>
+            <div className={styles.setting}>
+              <div className={styles.settingTitle}>Race</div>
+              <Input
+                value={kingdom.race}
+                onChange={(e) =>
+                  setKingdom({ ...kingdom, race: e.target.value })
+                }
+              />
+            </div>
+            <div className={styles.setting}>
+              <div className={styles.settingTitle}>System</div>
+              <Input
+                value={kingdom.system}
+                onChange={(e) =>
+                  setKingdom({ ...kingdom, system: e.target.value })
+                }
+              />
+            </div>
+          </div>
+        </Modal>
+      )}
+      {openRuler && (
+        <Modal
+          isOpen={openRuler}
+          onClose={() => setOpenRuler(false)}
+          title="Ruler"
+        >
+          <div className={styles.settings}>
+            <div className={styles.setting}>
+              <div className={styles.settingTitle}>Name</div>
+              <Input
+                value={ruler.name}
+                onChange={(e) => setRuler({ ...ruler, name: e.target.value })}
+              />
+            </div>
+            <div className={styles.setting}>
+              <div className={styles.settingTitle}>Title</div>
+              <Input
+                value={ruler.title}
+                onChange={(e) => setRuler({ ...ruler, title: e.target.value })}
+              />
+            </div>
+            <div className={styles.setting}>
+              <div className={styles.settingTitle}>Race</div>
+              <Input
+                value={ruler.race}
+                onChange={(e) => setRuler({ ...ruler, race: e.target.value })}
+              />
+            </div>
+          </div>
+        </Modal>
       )}
     </div>
   );

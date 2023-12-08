@@ -15,6 +15,8 @@ export default function Header({
   power,
   wealth,
   kingdomName,
+  openKingdom,
+  openRuler,
 }) {
   const [beforeLove, setBeforeLove] = useState(love);
   const [beforePower, setBeforePower] = useState(power);
@@ -46,8 +48,13 @@ export default function Header({
   return (
     <div className={styles.header}>
       <div className={styles.titleArea}>
-        <FaCrown size={36} color="white" className={styles.icon} />
-        <div className={styles.title}>
+        <FaCrown
+          size={36}
+          color="white"
+          className={styles.icon}
+          onClick={() => openRuler(true)}
+        />
+        <div className={styles.title} onClick={() => openKingdom(true)}>
           <h1>{kingdomName}</h1>
         </div>
         <IoMdSettings
