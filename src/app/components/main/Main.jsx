@@ -161,8 +161,6 @@ Name: ${ruler.name}`);
                 setGenerating(false);
                 setChoice(true);
                 setInput(input);
-                // remove the last line
-                setContext(context.slice(0, context.length - 1));
               });
           }
         })
