@@ -99,6 +99,7 @@ Name: ${ruler.name}`);
         })
         .catch((err) => {
           console.log(err);
+          setChoice(false);
           setPopUp(true);
           setPopUpTitle("Error");
           setPopUpText("Something went wrong. Please check your API key.");
@@ -165,6 +166,7 @@ Name: ${ruler.name}`);
           setPopUpTitle("Error");
           setPopUpText("Something went wrong. Please check your API key.");
           setGenerating(false);
+          setChoice(true);
           setInput(input);
         });
     });
