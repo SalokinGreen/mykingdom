@@ -112,13 +112,14 @@ Name: ${ruler.name}`);
     setGenerating(true);
     setChoice(false);
     buildContext(
-      mykingdom.after,
+      mykingdom.start,
       mykingdom.context,
       [...context],
       8000,
       mykingdomcontext
     ).then((res) => {
       setInput("");
+      let contextText = res + `> ${input}\n`;
       generate(res + `> ${input}\n`, {}, key)
         .then((res2) => {
           console.log(res2);
@@ -126,40 +127,44 @@ Name: ${ruler.name}`);
           if (text.includes("\n>")) {
             text = text.split("\n>")[0];
           }
-          let found = false;
-          // points logic. There might be "Love: XXX;" or "Love: ]" check for both
-          let loveText = text.split("Love: ")[1];
-          let powerText = text.split("Power: ")[1];
-          let wealthText = text.split("Wealth: ")[1];
-          if (loveText) {
-            loveText.includes(";")
-              ? (loveText = loveText.split(";")[0])
-              : loveText.split(" ]")[0];
-            const loveValue = getValue(loveText);
-            loveValue !== 0 && (found = true);
-            setLove(love + loveValue);
+          if (findStats(text)) {
+            setContext([...context, `> ${input}`, text]);
+            setGenerating(false);
+            setYear(year + 1);
+          } else {
+            console.log("Stats not found");
+            // remove "[ " " ]" and anything in between
+            text = text.replace(/\[.*?\]/g, "");
+            text.trim();
+            generate(contextText + text + "\n[ Love:", {}, key)
+              .then((res3) => {
+                let findings = res3[0].replace("\n***", "");
+                if (findings.includes("\n>")) {
+                  findings = findings.split("\n>")[0];
+                }
+                findStats(findings);
+                setContext([
+                  ...context,
+                  `> ${input}`,
+                  text + "\n[ Love:" + findings,
+                ]);
+                setGenerating(false);
+                setYear(year + 1);
+              })
+              .catch((err) => {
+                console.log(err);
+                setPopUp(true);
+                setPopUpTitle("Error");
+                setPopUpText(
+                  "Something went wrong. Please check your API key."
+                );
+                setGenerating(false);
+                setChoice(true);
+                setInput(input);
+                // remove the last line
+                setContext(context.slice(0, context.length - 1));
+              });
           }
-          if (powerText) {
-            powerText.includes(";")
-              ? (powerText = powerText.split(";")[0])
-              : powerText.split(" ]")[0];
-            const powerValue = getValue(powerText);
-            powerValue !== 0 && (found = true);
-            setPower(power + powerValue);
-          }
-          if (wealthText) {
-            wealthText.includes(";")
-              ? (wealthText = wealthText.split(";")[0])
-              : wealthText.split(" ]")[0];
-            const wealthValue = getValue(wealthText);
-            wealthValue !== 0 && (found = true);
-            setWealth(wealth + wealthValue);
-          }
-          console.log(loveText, powerText, wealthText, found);
-
-          setContext([...context, `> ${input}`, text]);
-          setGenerating(false);
-          setYear(year + 1);
         })
         .catch((err) => {
           console.log(err);
@@ -173,6 +178,39 @@ Name: ${ruler.name}`);
           setContext(context.slice(0, context.length - 1));
         });
     });
+  }
+  function findStats(text) {
+    let found = false;
+    // points logic. There might be "Love: XXX;" or "Love: ]" check for both
+    let loveText = text.split("Love: ")[1];
+    let powerText = text.split("Power: ")[1];
+    let wealthText = text.split("Wealth: ")[1];
+    if (loveText) {
+      loveText.includes(";")
+        ? (loveText = loveText.split(";")[0])
+        : loveText.split(" ]")[0];
+      const loveValue = getValue(loveText);
+      loveValue !== 0 && (found = true);
+      setLove(love + loveValue);
+    }
+    if (powerText) {
+      powerText.includes(";")
+        ? (powerText = powerText.split(";")[0])
+        : powerText.split(" ]")[0];
+      const powerValue = getValue(powerText);
+      powerValue !== 0 && (found = true);
+      setPower(power + powerValue);
+    }
+    if (wealthText) {
+      wealthText.includes(";")
+        ? (wealthText = wealthText.split(";")[0])
+        : wealthText.split(" ]")[0];
+      const wealthValue = getValue(wealthText);
+      wealthValue !== 0 && (found = true);
+      setWealth(wealth + wealthValue);
+    }
+    console.log(loveText, powerText, wealthText, found);
+    return found;
   }
   useEffect(() => {
     if (love <= 0 || power <= 0 || wealth <= 0) {

@@ -1,6 +1,5 @@
 const mykingdom = {
-  start: `[ Title: My Kingdom; Tags: game; ]
-`,
+  start: `[ Title: My Kingdom; Tags: game ]`,
   context: [
     `***
 Year 0
