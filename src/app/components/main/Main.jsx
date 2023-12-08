@@ -173,7 +173,7 @@ Name: ${ruler.name}`);
           setChoice(true);
           setInput(input);
           // remove the last line
-          setContext(context.slice(0, context.length - 1));
+          setContext(context);
         });
     });
   }
