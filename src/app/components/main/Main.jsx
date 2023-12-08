@@ -142,7 +142,7 @@ Name: ${ruler.name}`);
                 if (findings.includes("\n>")) {
                   findings = findings.split("\n>")[0];
                 }
-                findStats(findings);
+                findStats("Love:" + findings);
                 setContext([
                   ...context,
                   `> ${input}`,
