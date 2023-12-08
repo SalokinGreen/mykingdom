@@ -108,6 +108,7 @@ Name: ${ruler.name}`);
     });
   }
   function afterChoice() {
+    setContext([...context, `> ${input}`]);
     setGenerating(true);
     setChoice(false);
     buildContext(
@@ -168,6 +169,8 @@ Name: ${ruler.name}`);
           setGenerating(false);
           setChoice(true);
           setInput(input);
+          // remove the last line
+          setContext(context.slice(0, context.length - 1));
         });
     });
   }
@@ -332,7 +335,7 @@ Name: ${ruler.name}`);
           onChange={(e) => setInput(e.target.value)}
           handleEnter={handleEnter}
         />
-        <Button onClick={() => send()}>Enter</Button>
+        <Button onClick={() => send()}>RULE</Button>
       </div>
       {openSettings && (
         <Modal
