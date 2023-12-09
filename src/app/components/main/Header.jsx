@@ -66,7 +66,7 @@ export default function Header({
       </div>
       <div className={styles.stats}>
         <div className={styles.stat}>
-          <FaHeart size={36} className={styles[`${powerColor}`]} />
+          <FaHeart size={36} className={styles[`${loveColor}`]} />
           <p>{love}</p>
         </div>
         <div className={styles.stat}>
@@ -74,7 +74,7 @@ export default function Header({
           <p>{power}</p>
         </div>
         <div className={styles.stat}>
-          <AiFillGold size={36} className={styles[`${powerColor}`]} />
+          <AiFillGold size={36} className={styles[`${wealthColor}`]} />
           <p>{wealth}</p>
         </div>
       </div>
