@@ -95,6 +95,7 @@
   padding: 0.5rem;
   max-height: 73dvh;
   transition: all 0.3s ease-in-out;
+  overflow-x: hidden;
   overflow-y: scroll;
   /* scrollbar */
   scrollbar-width: thin;

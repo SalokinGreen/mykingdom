@@ -228,12 +228,13 @@ Name: ${ruler.name}`);
     }
   }, [love, power, wealth]);
   useEffect(() => {
-    if (!choice) {
+    if (!choice && !generating && !wentBack) {
       send();
     }
   }, [choice, generating]);
   function send() {
     if (generating) return;
+    setWentBack(false);
     if (choice) {
       afterChoice();
     } else {
@@ -345,6 +346,44 @@ Name: ${ruler.name}`);
       localStorage.setItem("MKruler", JSON.stringify(ruler));
     }
   }, [ruler]);
+  const [states, setStates] = useState([
+    {
+      love: 50,
+      power: 50,
+      wealth: 50,
+      year: 0,
+      choice: true,
+    },
+  ]);
+  useEffect(() => {
+    setStates([
+      ...states,
+      {
+        love: love,
+        power: power,
+        wealth: wealth,
+        year: year,
+        choice: choice,
+      },
+    ]);
+  }, [year]);
+  const [wentBack, setWentBack] = useState(false);
+  function goBack() {
+    setWentBack(true);
+    const newContext = [...context];
+    newContext.splice(context.length - 1, 1);
+    setContext(newContext);
+    console.log(states);
+    setLove(states[states.length - 1].love);
+    setPower(states[states.length - 1].power);
+    setWealth(states[states.length - 1].wealth);
+    setYear(states[states.length - 1].year);
+    setChoice(states[states.length - 1].choice);
+    const newStates = [...states];
+    newStates.splice(states.length - 1, 1);
+    setStates(newStates);
+  }
+
   return (
     <div className={styles.main}>
       <Header
@@ -359,7 +398,7 @@ Name: ${ruler.name}`);
       />
       <div className={styles.contextContainer}>
         {context.map((c, i) => (
-          <Bubble i={i} key={i}>
+          <Bubble i={i} key={i} deleteBubble={goBack}>
             {c}
           </Bubble>
         ))}
