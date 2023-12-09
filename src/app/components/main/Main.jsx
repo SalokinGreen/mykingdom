@@ -264,7 +264,11 @@ Name: ${ruler.name}`);
       text.includes("increased greatly") ||
       text.includes("increase greatly") ||
       text.includes("greatly increased") ||
-      text.includes("greatly increase")
+      text.includes("greatly increase") ||
+      text.includes("greatly raised") ||
+      text.includes("greatly raising") ||
+      text.includes("greatly raise") ||
+      text.includes("extreme")
     ) {
       return 20;
     } else if (
@@ -368,19 +372,18 @@ Name: ${ruler.name}`);
     ]);
   }, [year]);
   const [wentBack, setWentBack] = useState(false);
-  function goBack() {
+  function goBack(i) {
+    if (generating || i === 0) return;
     setWentBack(true);
-    const newContext = [...context];
-    newContext.splice(context.length - 1, 1);
+    const newContext = context.slice(0, i);
     setContext(newContext);
     console.log(states);
-    setLove(states[states.length - 1].love);
-    setPower(states[states.length - 1].power);
-    setWealth(states[states.length - 1].wealth);
-    setYear(states[states.length - 1].year);
-    setChoice(states[states.length - 1].choice);
-    const newStates = [...states];
-    newStates.splice(states.length - 1, 1);
+    setLove(states[i].love);
+    setPower(states[i].power);
+    setWealth(states[i].wealth);
+    setYear(states[i].year);
+    setChoice(states[i].choice);
+    const newStates = states.slice(0, i + 1);
     setStates(newStates);
   }
 

@@ -11,7 +11,7 @@ export default function Bubble({ children, i, deleteBubble }) {
   }, [text]);
   // delete bubble
   function hadleDelete() {
-    deleteBubble();
+    deleteBubble(i);
   }
   // Bubble swiping
   const [startX, setStartX] = useState(0);
