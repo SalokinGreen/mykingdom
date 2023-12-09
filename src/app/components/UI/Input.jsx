@@ -10,6 +10,7 @@ const Input = ({ onChange, value, placeholder, ref, handleEnter }) => {
       className={styles.input}
       ref={ref}
       onKeyDown={handleEnter}
+      autoComplete="off"
     />
   );
 };
