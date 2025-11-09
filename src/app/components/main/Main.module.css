@@ -144,3 +144,21 @@
   font-size: 1.2rem;
   font-weight: bold;
 }
+.select {
+  padding: 0.5rem 1rem;
+  border: 2px solid #fbd80f;
+  border-radius: 0.5rem;
+  background-color: #004c4c;
+  color: #fbd80f;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+.select:hover {
+  background-color: #006666;
+}
+.select:focus {
+  outline: none;
+  box-shadow: 0 0 0.5rem #fbd80f;
+}
